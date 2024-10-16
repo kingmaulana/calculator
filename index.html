@@ -4,39 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ODIN: Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-    
-    <h1>CALCULATOR PULU</h1>
-    <div class="operators">
-        <button class="add">+</button>
-        <button class="substract">-</button>
-        <button class="multiply">*</button>
-        <button class="divide">/</button>
+    <div class="container">
+        <div class="merk">
+            <h1 id="title"><span>CALCULATOR PULU</span></h1>
+        </div>
+        
+        <div class="box-display">
+            <h1><span id="input-number"></span><span id="result-calculator"></span></h1>
+            <!-- <h2 class="input-number">Input : <span></span></h2>
+            <h2 class="result-calculator">Result : <span></span></h2> -->
+            <!-- <h2 class="input-operator">Operator Math : <span></span></h2> -->
+        </div>
+
+        <div class="main-button">
+            <div class="operators">
+                <button class="add">+</button>
+                <button class="substract">-</button>
+                <button class="multiply">*</button>
+                <button class="divide">/</button>
+            </div>
+        
+            <div class="digit">
+                <button class="1">1</button>
+                <button class="2">2</button>
+                <button class="3">3</button>
+                <button class="4">4</button>
+                <button class="5">5</button>
+                <button class="6">6</button>
+                <button class="7">7</button>
+                <button class="8">8</button>
+                <button class="9">9</button>
+                <button class="0">0</button>
+                <button class="dot">.</button>
+                <button class="backspace">DEL</button>
+            </div>
+            
+            <div class="action-button">
+                <button class="clear">CLEAR</button>
+                <button class="equals">=</button>
+            </div>
+        </div>
     </div>
-    <button class="equals">=</button>
-    <br>
-
-    <div class="digit">
-        <button class="1">1</button>
-        <button class="2">2</button>
-        <button class="3">3</button>
-        <button class="4">4</button>
-        <button class="5">5</button>
-        <button class="6">6</button>
-        <button class="7">7</button>
-        <button class="8">8</button>
-        <button class="9">9</button>
-        <button class="0">0</button>
-        <button class="dot">.</button>
-    </div>
-
-    <h2 class="input-number">Input : <span></span></h2>
-    <h2 class="input-operator">Operator Math : <span></span></h2>
-
-    <h2 class="result-calculator">Result : <span></span></h2>
-
-    <button class="clear">Clear</button>
     
+   
+    <link rel="stylesheet" href="style.css">
     <script src="calculator.js"></script>
 </body>
