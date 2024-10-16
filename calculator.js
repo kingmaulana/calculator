@@ -74,16 +74,25 @@ buttonOperators.forEach((operator) => {
         if(firstNumber !== ''){
             secondNumber = Number(collectNumber);
             let firstN = Number(firstNumber);
-            firstNumber = operate(firstN, oldOperator, secondNumber);
-            oldOperator = inputOperator;
-            collectNumber = '';
-            displayNumber.textContent = '';
-            resultDisplay.textContent = firstNumber;
+            //check first if user try to devided number with zero
+            if(oldOperator === '/' && secondNumber === 0) {
+                alert('Calculator Error, dont enter 0 in division!');
+                //clear all and start again
+                clearAll();
+            } else {
+                firstNumber = operate(firstN, oldOperator, secondNumber);
+                oldOperator = inputOperator;
+                collectNumber = '';
+                displayNumber.textContent = '';
+                resultDisplay.textContent = firstNumber;
+                dotButton.disabled = false;
+            }
         } else {
             firstNumber = collectNumber;
             collectNumber = '';
             oldOperator = inputOperator;
             displayNumber.textContent = '';
+            dotButton.disabled = false;
         }
 
         // console.log('first ' + firstNumber);
@@ -119,25 +128,39 @@ buttonEqual.addEventListener('click', () => {
 
     //invoke the calculator function
     resultTotal = operate(firstN, inputOperator, secondN);
-    //show the result to the html
-    resultDisplay.textContent = resultTotal;
+    
+    //check if there is a decimal in result number
+    if(resultTotal % 1 !== 0) {
+        //show the result to the html
+        resultDisplay.textContent = resultTotal.toFixed(3);
+    } else {
+        //show the result to the html
+        resultDisplay.textContent = resultTotal;
+    }
 });
 
-
+// let num = 4;
+// let rvDec = num.toFixed(2);
+// console.log(rvDec)
 
 
 
 
 //When user clik clear button
 const buttonClear = document.querySelector('.clear');
-buttonClear.addEventListener('click', () => {
+
+function clearAll() {
     collectNumber = '';
     resultTotal = '';
     inputOperator = '';
     firstNumber = '';
     secondNumber = '';
+    oldOperator = '';
+    dotButton.disabled = false;
     displayNumber.textContent = '';
     resultDisplay.textContent = '';
     displayOperator.textContent = '';
-});
+}
+
+buttonClear.addEventListener('click', clearAll);
 
