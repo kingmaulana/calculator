@@ -112,39 +112,37 @@ const resultDisplay = document.querySelector('.result-calculator span');
 //assign the result from function
 let resultTotal = '';
 buttonEqual.addEventListener('click', () => {
-    secondNumber = collectNumber;
 
-    //remove all display input and operator
-    displayNumber.textContent = '';
-    displayOperator.textContent = '';
-
-    //console.log(typeof firstNumber)
-    // console.log(inputOperator)
-    // console.log(secondNumber)
-    
-    //make the value of each number to type number before throw as arguments
-    let firstN = Number(firstNumber);
-    let secondN = Number(secondNumber);
-
-    //invoke the calculator function
-    resultTotal = operate(firstN, inputOperator, secondN);
-    
-    //check if there is a decimal in result number
-    if(resultTotal % 1 !== 0) {
-        //show the result to the html
-        resultDisplay.textContent = resultTotal.toFixed(3);
+    // check when user tap = button berfore anything else 
+    if(firstNumber === '') {
+        console.log('EMPTYYY!!')
     } else {
-        //show the result to the html
-        resultDisplay.textContent = resultTotal;
+        secondNumber = collectNumber;
+        //remove all display input and operator
+        displayNumber.textContent = '';
+        displayOperator.textContent = '';
+    
+        //console.log(typeof firstNumber)
+        // console.log(inputOperator)
+        // console.log(secondNumber)
+        
+        //make the value of each number to type number before throw as arguments
+        let firstN = Number(firstNumber);
+        let secondN = Number(secondNumber);
+    
+        //invoke the calculator function
+        resultTotal = operate(firstN, inputOperator, secondN);
+        
+        //check if there is a decimal in result number
+        if(resultTotal % 1 !== 0) {
+            //show the result to the html
+            resultDisplay.textContent = resultTotal.toFixed(3);
+        } else {
+            //show the result to the html
+            resultDisplay.textContent = resultTotal;
+        }
     }
 });
-
-// let num = 4;
-// let rvDec = num.toFixed(2);
-// console.log(rvDec)
-
-
-
 
 //When user clik clear button
 const buttonClear = document.querySelector('.clear');
