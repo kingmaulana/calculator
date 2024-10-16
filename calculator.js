@@ -32,7 +32,7 @@ function operate(numOne, operator, numTwo) {
 }
 
 // get the input element in html
-const displayNumber = document.querySelector('.input-number span');
+const displayNumber = document.querySelector('#input-number');
 let collectNumber = '';
 
 // get the button number in html
@@ -42,12 +42,18 @@ let dotButton = document.querySelector('.digit .dot');
 // When user click the button number
 buttonDigit.forEach((digit) => {
     digit.addEventListener('click', (number) => {
+        //add class to give effect when button click
+        document.querySelector('.addEffectClicked')?.classList.remove('addEffectClicked');
+        number.target.classList.add('addEffectClicked');
+
         let getNumber = number.target.innerText;
         // check if the dot is clicked or not
         if(number.target.className !== 'dot') {
             collectNumber += getNumber;
+            resultDisplay.textContent = '';
         } else {
             collectNumber += getNumber;
+            resultDisplay.textContent = '';
             dotButton.disabled = true;
         }
         //update display with number was clicked
@@ -56,7 +62,7 @@ buttonDigit.forEach((digit) => {
 });
 
 // get display h2 operator in html
-let displayOperator = document.querySelector('.input-operator span');
+// let displayOperator = document.querySelector('.input-operator span');
 // get the operator button in html
 const buttonOperators = document.querySelectorAll('.operators button');
 let inputOperator = '';
@@ -67,8 +73,12 @@ let oldOperator = '';
 // when user click one of the operator button
 buttonOperators.forEach((operator) => {
     operator.addEventListener('click', (oper) => {
+        //add class to give effect when button click
+        document.querySelector('.addEffectClicked')?.classList.remove('addEffectClicked');
+        oper.target.classList.add('addEffectClicked');
+
         inputOperator = oper.target.innerText;
-        displayOperator.textContent = inputOperator;
+        //displayOperator.textContent = inputOperator;
 
         //check if the firstNumber is empty
         if(firstNumber !== ''){
@@ -83,7 +93,7 @@ buttonOperators.forEach((operator) => {
                 firstNumber = operate(firstN, oldOperator, secondNumber);
                 oldOperator = inputOperator;
                 collectNumber = '';
-                displayNumber.textContent = '';
+                // displayNumber.textContent = '';
                 resultDisplay.textContent = firstNumber;
                 dotButton.disabled = false;
             }
@@ -91,7 +101,7 @@ buttonOperators.forEach((operator) => {
             firstNumber = collectNumber;
             collectNumber = '';
             oldOperator = inputOperator;
-            displayNumber.textContent = '';
+            // displayNumber.textContent = '';
             dotButton.disabled = false;
         }
 
@@ -108,19 +118,22 @@ const buttonEqual = document.querySelector('.equals');
 //assing the number when user click the equal button
 let secondNumber = '';
 //get the result element in HTML
-const resultDisplay = document.querySelector('.result-calculator span');
+const resultDisplay = document.querySelector('#result-calculator');
 //assign the result from function
 let resultTotal = '';
-buttonEqual.addEventListener('click', () => {
+buttonEqual.addEventListener('click', function() {
+    //add class to give effect when button click
+    document.querySelector('.addEffectClicked')?.classList.remove('addEffectClicked');
+    this.classList.add('addEffectClicked');
 
     // check when user tap = button berfore anything else 
     if(firstNumber === '') {
-        console.log('EMPTYYY!!')
+        return false;
     } else {
         secondNumber = collectNumber;
         //remove all display input and operator
         displayNumber.textContent = '';
-        displayOperator.textContent = '';
+        //displayOperator.textContent = '';
     
         //console.log(typeof firstNumber)
         // console.log(inputOperator)
@@ -157,8 +170,14 @@ function clearAll() {
     dotButton.disabled = false;
     displayNumber.textContent = '';
     resultDisplay.textContent = '';
-    displayOperator.textContent = '';
+    //displayOperator.textContent = '';
 }
 
-buttonClear.addEventListener('click', clearAll);
+buttonClear.addEventListener('click', function() {
+     //add class to give effect when button click
+     document.querySelector('.addEffectClicked')?.classList.remove('addEffectClicked');
+     this.classList.add('addEffectClicked');
+     
+    clearAll();
+});
 
