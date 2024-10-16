@@ -30,3 +30,26 @@ function operate(numOne, operator, numTwo) {
             return 'Please enter the operator Math (+,-,*,/)';
     }
 }
+
+const inputNumber = document.querySelector('.input-number span');
+let collectNumber = '';
+
+const buttonDigit = document.querySelectorAll('.digit button');
+// When user click the button number
+buttonDigit.forEach((digit) => {
+    digit.addEventListener('click', (number) => {
+        //update display with number was clicked
+        let getNumber = number.target.innerText;
+        collectNumber += getNumber;
+
+        inputNumber.textContent = collectNumber;
+    });
+});
+
+
+const buttonClear = document.querySelector('.clear');
+buttonClear.addEventListener('click', () => {
+    collectNumber = '';
+
+    inputNumber.textContent = collectNumber;
+})
