@@ -37,18 +37,23 @@ let collectNumber = '';
 
 // get the button number in html
 const buttonDigit = document.querySelectorAll('.digit button');
-
+// get the dot button in html
+let dotButton = document.querySelector('.digit .dot');
 // When user click the button number
 buttonDigit.forEach((digit) => {
     digit.addEventListener('click', (number) => {
-        //update display with number was clicked
         let getNumber = number.target.innerText;
-        collectNumber += getNumber;
-
+        // check if the dot is clicked or not
+        if(number.target.className !== 'dot') {
+            collectNumber += getNumber;
+        } else {
+            collectNumber += getNumber;
+            dotButton.disabled = true;
+        }
+        //update display with number was clicked
         displayNumber.textContent = collectNumber;
     });
 });
-
 
 // get display h2 operator in html
 let displayOperator = document.querySelector('.input-operator span');
@@ -57,17 +62,34 @@ const buttonOperators = document.querySelectorAll('.operators button');
 let inputOperator = '';
 //assign first number when user click operate button
 let firstNumber = '';
+//save old operator
+let oldOperator = '';
 // when user click one of the operator button
 buttonOperators.forEach((operator) => {
     operator.addEventListener('click', (oper) => {
         inputOperator = oper.target.innerText;
         displayOperator.textContent = inputOperator;
-        //assign value number first 
-        firstNumber = collectNumber;
-        //reset to the zero or empty
-        collectNumber ='';
+
+        //check if the firstNumber is empty
+        if(firstNumber !== ''){
+            secondNumber = Number(collectNumber);
+            let firstN = Number(firstNumber);
+            firstNumber = operate(firstN, oldOperator, secondNumber);
+            oldOperator = inputOperator;
+            collectNumber = '';
+            displayNumber.textContent = '';
+            resultDisplay.textContent = firstNumber;
+        } else {
+            firstNumber = collectNumber;
+            collectNumber = '';
+            oldOperator = inputOperator;
+            displayNumber.textContent = '';
+        }
+
+        // console.log('first ' + firstNumber);
+        // console.log('second ' + secondNumber);
         //remove the inner text for remove number in display
-        displayNumber.textContent = '';
+        
     });
 });
 
@@ -118,3 +140,4 @@ buttonClear.addEventListener('click', () => {
     resultDisplay.textContent = '';
     displayOperator.textContent = '';
 });
+
