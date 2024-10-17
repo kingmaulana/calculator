@@ -39,6 +39,7 @@ let collectNumber = '';
 const buttonDigit = document.querySelectorAll('.digit button');
 // get the dot button in html
 let dotButton = document.querySelector('.digit .dot');
+
 // When user click the button number
 buttonDigit.forEach((digit) => {
     digit.addEventListener('click', (number) => {
@@ -46,12 +47,20 @@ buttonDigit.forEach((digit) => {
         document.querySelector('.addEffectClicked')?.classList.remove('addEffectClicked');
         number.target.classList.add('addEffectClicked');
 
-        let getNumber = number.target.innerText;
-        // check if the dot is clicked or not
-        if(number.target.className !== 'dot') {
+        let getNumber = '';        
+        //check if del button click 
+        if(number.target.className == 'backspace addEffectClicked' && collectNumber !== '') {
+           let splitColectNumber = [];
+           splitColectNumber = collectNumber.split('')
+           splitColectNumber.splice(-1, 1);
+           collectNumber = splitColectNumber.join('')
+        }else if(number.target.className !== 'dot' && number.target.className !== 'backspace addEffectClicked') {
+            getNumber = number.target.innerText;
+             // check if the dot is clicked or not
             collectNumber += getNumber;
             resultDisplay.textContent = '';
         } else {
+            getNumber = number.target.innerText;
             collectNumber += getNumber;
             resultDisplay.textContent = '';
             dotButton.disabled = true;
